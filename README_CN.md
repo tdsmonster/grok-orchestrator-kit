@@ -111,7 +111,7 @@ docker compose up -d
 cd ..
 
 # 安装极简依赖
-pip install curl_cffi httpx
+# 纯标准库驱动，无需额外 pip 安装第三方网络库 (Zero external dependencies)
 
 # 启动 5 个账号的自动注册与注入 (自动走 Outlook 裂变)
 python3 scripts/auto_register_and_import.py --count 5

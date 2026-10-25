@@ -111,7 +111,7 @@ docker compose up -d
 cd ..
 
 # Install minimal worker requirements
-pip install curl_cffi httpx
+# 纯标准库驱动，无需额外 pip 安装第三方网络库 (Zero external dependencies)
 
 # Run 5-account automated generation & injection via Outlook Plus
 python3 scripts/auto_register_and_import.py --count 5

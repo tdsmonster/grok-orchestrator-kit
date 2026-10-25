@@ -1,0 +1,26 @@
+# --- secrets / 密钥 ----------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# --- python / 运行时 ---------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# --- runtime artefacts / 运行产物 -------------------------------------------
+# Credential exports contain live OAuth tokens — never commit them.
+# 凭据导出包含真实 OAuth token，严禁提交。
+accounts/
+*.sub2api.json
+sub2api-*.json
+*.log
+reports/
+*.report.json
+
+# --- macOS -------------------------------------------------------------------
+.DS_Store

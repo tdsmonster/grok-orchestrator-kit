@@ -12,10 +12,10 @@
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
-│ 1. 邮箱与收信网络 (Catch-All Mail Pipeline)                  │
-│  - 自定义域名 (Cloudflare Email Routing Catch-all)          │
-│  - 任意邮箱前缀 xxx@yourdomain.com -> 转发至指定收信 Gmail   │
-│  - 注册端通过 Gmail IMAP (imaps://imap.gmail.com:993) 秒级取码│
+│ 1. 微软 Outlook 别名裂变网络 (Outlook Plus-Addressing)        │
+│  - 微软母号池 (base@outlook.com)                            │
+│  - 自动 10 倍加号别名派生 (base+1@outlook.com ... base+9)    │
+│  - 微软 Graph API 助手 (:17373) -> 毫秒级提取验证码          │
 └──────────────────────────────┬──────────────────────────────┘
                                │
                                ▼
@@ -55,7 +55,7 @@
 Agent 生成并导入 NovaApi 账号池的 Payload 如下：
 ```json
 {
-  "name": "xxx@yourdomain.com",
+  "name": "username+1@outlook.com",
   "platform": "grok",
   "type": "oauth",
   "credentials": {
@@ -64,7 +64,7 @@ Agent 生成并导入 NovaApi 账号池的 Payload 如下：
     "token_type": "Bearer",
     "client_id": "b1a00492-073a-47ea-816f-4c329264a828",
     "scope": "openid profile email offline_access grok-cli:access api:access",
-    "email": "xxx@yourdomain.com",
+    "email": "username+1@outlook.com",
     "expires_at": "2026-10-25T12:00:00Z",
     "base_url": "https://cli-chat-proxy.grok.com/v1"
   },
@@ -87,13 +87,8 @@ docker compose up -d
 ```
 服务将在本地 `http://127.0.0.1:8000` 监听。
 
-### 第 2 步：配置邮箱与收信网络
-1. 准备一个托管在 Cloudflare 上的域名，开启 **Email Routing ➔ Catch-all rule**，全部转发至你的 Gmail；
-2. 获取 Gmail 的 **应用专用密码 (App Password)**；
-3. 将参数填入 `scripts/auto_register_and_import.py` 中。
-
-### 第 3 步：运行全自动生产脚本
+### 第 2 步：运行全自动生产脚本 (基于 Outlook Plus 裂变)
 ```bash
 python3 scripts/auto_register_and_import.py --count 5
 ```
-脚本将全自动唤醒指纹浏览器完成注册、收取验证码、PKCE 授权换票，并将 5 个账号安全无缝地挂载到 NovaApi 的 Grok 账号池中！
+脚本将全自动调用 ProGrok 启动批次、从 Outlook 母号池裂变别名、通过 Graph API 提取验证码、PKCE 换票，并将 5 个账号安全无缝地挂载到 NovaApi 的 Grok 账号池中！

@@ -1,84 +1,77 @@
-# 🚀 Grok-Orchestrator-Kit (GOK)
+# ⚡ GROK-ORCHESTRATOR-KIT (GOK)
 
 <div align="center">
 
-<h3>⚡ Automated xAI Grok Account Harvester & High-Concurrency OpenAI-Compatible Gateway ⚡</h3>
-<p><b>全自动 xAI Grok 账号裂变收割机与高并发 OpenAI 兼容反向代理中枢</b></p>
+# 🚀 GROK-ORCHESTRATOR-KIT
+### ⚡ Automated xAI Grok Account Harvester & High-Concurrency OpenAI-Compatible Gateway ⚡
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
-[![Docker Compose](https://img.shields.io/badge/Docker-Compose-2496ED?style=flat-square&logo=docker&logoColor=white)](compose/docker-compose.yml)
-[![OpenAI Compatible](https://img.shields.io/badge/API-OpenAI%20Compatible-412991?style=flat-square&logo=openai&logoColor=white)](docs/ARCHITECTURE_SPEC.md)
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)](scripts/auto_register_and_import.py)
-[![Architecture](https://img.shields.io/badge/Target-Agent%20Native-00C7B7?style=flat-square)](docs/ARCHITECTURE_SPEC.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
+[![Docker Compose](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)](compose/docker-compose.yml)
+[![OpenAI Compatible](https://img.shields.io/badge/API-OpenAI%20Compatible-412991?style=for-the-badge&logo=openai&logoColor=white)](docs/ARCHITECTURE_SPEC.md)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](scripts/auto_register_and_import.py)
+[![Architecture](https://img.shields.io/badge/Target-Agent%20Native-00C7B7?style=for-the-badge)](docs/ARCHITECTURE_SPEC.md)
 
 <p align="center">
-  <a href="#-overview--项目概述">Overview</a> •
-  <a href="#-key-features--核心特性">Features</a> •
-  <a href="#-architecture--系统架构">Architecture</a> •
-  <a href="#-quick-start--快速上手">Quick Start</a> •
-  <a href="#-email-pipeline--邮箱裂变机制">Email Pipeline</a> •
-  <a href="#-technical-specifications--关键技术指标">Tech Specs</a> •
-  <a href="#-license--开源协议">License</a>
+  <b>English</b> | <a href="README_CN.md"><b>简体中文</b></a>
+</p>
+
+<p align="center">
+  <a href="#-overview">Overview</a> •
+  <a href="#-key-features">Key Features</a> •
+  <a href="#-architecture">Architecture</a> •
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-outlook-plus-addressing">Outlook Scaling</a> •
+  <a href="#-technical-specifications">Tech Specs</a> •
+  <a href="#-verifying-the-gateway">Verifying Output</a> •
+  <a href="#-license">License</a>
 </p>
 
 ---
 
 </div>
 
-## 📖 Overview / 项目概述
+## 📖 OVERVIEW
 
-**English:**  
-**Grok-Orchestrator-Kit (GOK)** is a production-grade, agent-native toolkit distilled from top-tier community tools ([`ProGrok`](https://github.com/xu16645-lang/progrok) & [`NovaApi`](https://github.com/AuuCoder/NovaApi)). It delivers an autonomous end-to-end pipeline:
-1. Automated email harvesting & verification (via Cloudflare Email Routing Catch-all or Microsoft Outlook Plus-Addressing);
-2. Anti-detection browser registration & official xAI OAuth PKCE token exchange;
-3. Seamless credential hydration into a high-concurrency PostgreSQL + Redis proxy cluster with standard OpenAI-compatible endpoints (`/v1/chat/completions`).
+**GROK-ORCHESTRATOR-KIT (GOK)** is a production-grade, agent-native toolkit distilled from top-tier community projects ([`ProGrok`](https://github.com/xu16645-lang/progrok) & [`NovaApi`](https://github.com/AuuCoder/NovaApi)). It delivers a fully autonomous end-to-end pipeline:
 
-**中文：**  
-**Grok-Orchestrator-Kit (GOK)** 是一套面向 AI Agent 与自动化运维场景的工业级生产套件，提炼自开源主力项目（[`ProGrok`](https://github.com/xu16645-lang/progrok) 与 [`NovaApi`](https://github.com/AuuCoder/NovaApi)）。它实现了完整的无人值守自动化闭环：
-1. 邮箱裂变收割与验证码毫秒级提取（支持 Cloudflare 域名 Catch-all 与 微软 Outlook 加号别名）；
-2. Camoufox 深度隐匿指纹浏览器自主过人机验证并完成 xAI 官方 OAuth PKCE 换票；
-3. 凭据秒级挂载进基于 PostgreSQL 18 + Redis 8 的高并发负载池，对外输出标准 OpenAI 格式接口。
+1. **Outlook Plus-Addressing Harvesting**: High-speed, 10x email alias expansion and instant code extraction via Microsoft Graph API.
+2. **Headless Anti-Detection Registration**: Camoufox fingerprint masking combined with local Cloudflare Turnstile solving and official xAI OAuth PKCE token exchange.
+3. **High-Concurrency Dispatching**: Seamless credential hydration into a PostgreSQL 18 + Redis 8 proxy cluster exposing standard OpenAI-compatible endpoints (`/v1/chat/completions`).
 
 ---
 
-## 🌟 Key Features / 核心特性
+## 🌟 KEY FEATURES
 
-- 🛡️ **Headless Anti-Detection Registration / 无感指纹隐匿注册**  
-  Powered by `Camoufox` and local Turnstile bypass techniques, effortlessly negotiating Cloudflare challenges and extracting authentic xAI SSO credentials.  
-  依托 Camoufox 隐匿内核与本地求解器，全自动跨越 Cloudflare 盾并提取 xAI 原始 SSO 会话。
+- 🛡️ **HEADLESS ANTI-DETECTION REGISTRATION**  
+  Powered by `Camoufox` and local Turnstile bypass techniques, effortlessly negotiating Cloudflare challenges and extracting authentic xAI SSO sessions.
 
-- 🔑 **Native xAI OAuth PKCE Token Exchange / 官方原生 PKCE 换票**  
-  Strictly compliant with official xAI CLI specifications (`b1a00492-073a-47ea-816f-4c329264a828`), exchanging browser sessions for official `access_token` and `refresh_token` with background auto-rotation.  
-  严格遵循 xAI 官方标准协议，将浏览器 Session 置换为官方 OAuth 凭据，支持静默自动刷新续期。
+- 🔑 **NATIVE xAI OAUTH PKCE TOKEN EXCHANGE**  
+  Strictly compliant with official xAI CLI specifications (`b1a00492-073a-47ea-816f-4c329264a828`), exchanging browser sessions for official `access_token` and `refresh_token` with background auto-rotation.
 
-- 📬 **Dual Email Scaling Pipelines / 双重邮箱无限裂变架构**  
-  - **Custom Domain Catch-All**: Routes any random prefix (`*@domain.com`) directly to Gmail IMAP.  
-  - **Microsoft Outlook Plus-Addressing**: 1 master account spawns 10 valid registration addresses (`base+1@outlook.com` ... `base+9@outlook.com`) via Graph API.  
-  - **自定义域名全员捕获**：基于 Cloudflare Email Routing，任意邮箱别名统一汇聚至 Gmail IMAP。  
-  - **微软加号别名裂变**：单个 Outlook 母号通过 `+tag` 原生派生 10 个独立注册账号，通过 Graph API 极速收信。
+- 📬 **MICROSOFT OUTLOOK PLUS-ADDRESSING SCALING**  
+  Leverages RFC 5233 plus-addressing. A single master mailbox spawns 10 valid registration addresses (`base+1@outlook.com` ... `base+9@outlook.com`) with instant code fetching via Microsoft Graph API.
 
-- ⚡ **High-Concurrency Rate-Limited Hub / 高并发池化调度中枢 (NovaApi)**  
-  Built-in PostgreSQL 18 persistence, Redis 8 distributed token-bucket rate limiting, smooth round-robin scheduling, and automatic fault isolation for dead accounts.  
-  内建 PostgreSQL 18 持久化储存与 Redis 8 令牌桶并发调度，支持多账号平滑轮询与失效账号物理隔离。
+- ⚡ **HIGH-CONCURRENCY RATE-LIMITED HUB (NOVAAPI)**  
+  Built-in PostgreSQL 18 persistence, Redis 8 distributed token-bucket rate limiting, smooth round-robin scheduling, and automatic fault isolation for dead accounts.
 
-- 🤖 **Agent-First Minimalist Footprint / Agent 极简零阻碍交付**  
-  Stripped of all cumbersome frontend compilation, WebUI overhead, and delicate dev-dependencies. Clean Docker Compose orchestration and headless Python automation.  
-  剥离一切冗余的前端打包编译与沉重 UI，纯声明式 Docker 编排与无头 Python 驱动，开箱即用。
+- 🤖 **AGENT-FIRST MINIMALIST FOOTPRINT**  
+  Stripped of all cumbersome frontend compilation, WebUI overhead, and delicate dev-dependencies. Clean Docker Compose orchestration and headless Python automation.
 
 ---
 
-## 🏗️ Architecture / 系统架构
+## 🏗️ ARCHITECTURE
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
-│ 1. Mail Scaling Network / 邮箱裂变网络                                    │
-│   • Route A: Cloudflare Catch-All (*@yourdomain.com -> Gmail IMAP)     │
-│   • Route B: Microsoft Outlook Plus-Addressing (base+N@outlook.com)    │
+│ 1. OUTLOOK PLUS-ADDRESSING SCALING NETWORK                             │
+│   • Microsoft Master Mailbox (base@outlook.com)                        │
+│   • Automatic 10x Plus-Alias Expansion (base+1@outlook.com ... +9)     │
+│   • Microsoft Graph API Helper (:17373) -> Real-Time Code Extraction   │
 └───────────────────────────────────┬────────────────────────────────────┘
                                     │
                                     ▼
 ┌────────────────────────────────────────────────────────────────────────┐
-│ 2. Automated Harvester & PKCE Exchanger / 自动化注册与授权换票中枢        │
+│ 2. AUTOMATED HARVESTER & PKCE EXCHANGER                                │
 │   • Camoufox Anti-Detect Browser Engine                                │
 │   • Cloudflare Turnstile Solver (:5072)                                │
 │   • xAI PKCE Flow -> Client ID: b1a00492-073a-47ea-816f-4c329264a828  │
@@ -87,7 +80,7 @@
                                     │
                                     ▼
 ┌────────────────────────────────────────────────────────────────────────┐
-│ 3. NovaApi (Sub2API) High-Concurrency Gateway / 高并发反代中枢 (:8000)   │
+│ 3. NOVAAPI (SUB2API) HIGH-CONCURRENCY GATEWAY (:8000)                  │
 │   • Upstream Target: https://cli-chat-proxy.grok.com/v1                │
 │   • PostgreSQL 18 State Persistence + Redis 8 Concurrency Token Bucket │
 │   • Auto Account Grouping (Group 2: Grok VIP Pool)                     │
@@ -97,53 +90,49 @@
 
 ---
 
-## 🚀 Quick Start / 快速上手
+## 🚀 QUICK START
 
-### 1. Clone Repository / 克隆仓库
+### 1. CLONE REPOSITORY
 ```bash
 git clone https://github.com/tdsmonster/grok-orchestrator-kit.git
 cd grok-orchestrator-kit
 ```
 
-### 2. Boot Gateway Cluster / 启动反向代理集群
+### 2. BOOT GATEWAY CLUSTER
 ```bash
 cd compose
 docker compose up -d
 ```
-> The gateway will listen on `http://localhost:8000`. PostgreSQL and Redis will automatically self-initialize and apply migrations.  
-> 启动后反代网关监听于 `http://localhost:8000`，数据库与缓存层全自动完成无状态迁移。
+> The gateway will listen on `http://localhost:8000`. PostgreSQL and Redis will automatically self-initialize and apply migrations.
 
-### 3. Run Automated Harvesting / 执行自动化账号生产
+### 3. RUN AUTOMATED HARVESTING
 ```bash
-# Return to root directory / 返回根目录
+# Return to root directory
 cd ..
 
-# Install minimal worker requirements / 安装极简运行时依赖
+# Install minimal worker requirements
 pip install curl_cffi httpx
 
-# Run 5-account automated generation & injection
-# 启动 5 个账号的自动注册与注入
-python3 scripts/auto_register_and_import.py \
-  --count 5 \
-  --domain "yourdomain.com" \
-  --imap-user "your_gmail@gmail.com" \
-  --imap-pass "your_gmail_app_password"
+# Run 5-account automated generation & injection via Outlook Plus
+python3 scripts/auto_register_and_import.py --count 5
 ```
 
 ---
 
-## 📬 Email Pipeline / 邮箱裂变机制
+## 📬 OUTLOOK PLUS-ADDRESSING
 
-| Mode / 模式 | Mechanism / 实现机制 | Scaling Ratio / 扩容杠杆 | Best Suited For / 适用场景 |
-| :--- | :--- | :--- | :--- |
-| **Catch-All Domain** | Cloudflare Email Routing forwards `*@domain.com` to Gmail | **Infinite (1:∞)** / 无限裂变 | Long-term cluster operations, custom domain owners<br>长期高并发集群运营、有独立域名者 |
-| **Outlook Plus** | Microsoft Plus-Addressing (`base+1@outlook.com`) via Graph API | **1:10 per mailbox** / 1 母号裂变 10 子号 | Fast cold starts, zero-domain setup, disposable pools<br>无域名快速冷启动、一次性账号池补给 |
+| PARAMETER | SPECIFICATION |
+| :--- | :--- |
+| **Protocol** | Microsoft Graph API / OAuth 2.0 |
+| **Expansion Ratio** | **1:10** (1 Master Mailbox -> 10 Autonomous Accounts) |
+| **Address Pattern** | `base+1@outlook.com`, `base+2@outlook.com`, ... |
+| **Local Helper Service**| `http://127.0.0.1:17373` |
 
 ---
 
-## 📑 Technical Specifications / 关键技术指标
+## 📑 TECHNICAL SPECIFICATIONS
 
-### xAI Official OAuth PKCE Protocol / 官方协议标准
+### xAI OFFICIAL OAUTH PKCE PROTOCOL
 ```yaml
 Authorize URL:       https://auth.x.ai/oauth2/authorize
 Token Exchange URL:  https://auth.x.ai/oauth2/token
@@ -153,10 +142,10 @@ Scope:               openid profile email offline_access grok-cli:access api:acc
 Upstream Target:     https://cli-chat-proxy.grok.com/v1
 ```
 
-### Standard Credential Structure / 标准入库凭证格式
+### STANDARD CREDENTIAL STRUCTURE
 ```json
 {
-  "name": "account_alias@domain.com",
+  "name": "username+1@outlook.com",
   "platform": "grok",
   "type": "oauth",
   "credentials": {
@@ -165,7 +154,7 @@ Upstream Target:     https://cli-chat-proxy.grok.com/v1
     "token_type": "Bearer",
     "client_id": "b1a00492-073a-47ea-816f-4c329264a828",
     "scope": "openid profile email offline_access grok-cli:access api:access",
-    "email": "account_alias@domain.com",
+    "email": "username+1@outlook.com",
     "expires_at": "2026-10-25T18:00:00Z",
     "base_url": "https://cli-chat-proxy.grok.com/v1"
   },
@@ -179,10 +168,9 @@ Upstream Target:     https://cli-chat-proxy.grok.com/v1
 
 ---
 
-## 🧪 Verifying Gateway Output / 验证反代端点
+## 🧪 VERIFYING THE GATEWAY
 
-Once accounts are loaded, query the gateway via any OpenAI SDK or `curl`:  
-账号录入后，可通过标准 OpenAI SDK 或 `curl` 验证输出：
+Once accounts are loaded, query the gateway via any OpenAI SDK or `curl`:
 
 ```bash
 curl http://127.0.0.1:8000/v1/chat/completions \
@@ -196,7 +184,6 @@ curl http://127.0.0.1:8000/v1/chat/completions \
 
 ---
 
-## 📄 License / 开源协议
+## 📄 LICENSE
 
-Distributed under the [MIT License](LICENSE).  
-本项目基于 [MIT 开源协议](LICENSE) 发布。
+Distributed under the [MIT License](LICENSE).

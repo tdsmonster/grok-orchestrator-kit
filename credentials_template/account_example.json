@@ -1,5 +1,5 @@
 {
-  "name": "your_account@gachoncopilot.com",
+  "name": "username+1@outlook.com",
   "platform": "grok",
   "type": "oauth",
   "credentials": {
@@ -8,7 +8,7 @@
     "token_type": "Bearer",
     "client_id": "b1a00492-073a-47ea-816f-4c329264a828",
     "scope": "openid profile email offline_access grok-cli:access api:access",
-    "email": "your_account@gachoncopilot.com",
+    "email": "username+1@outlook.com",
     "sub": "01923c78-9c96-4a4e-8ccb-1be5652328d4",
     "expires_at": "2026-10-25T18:00:00Z",
     "base_url": "https://cli-chat-proxy.grok.com/v1"

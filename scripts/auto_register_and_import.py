@@ -3,9 +3,10 @@
 auto_register_and_import.py
 =============================================================================
 Agent 专属：Grok 自动化注册、OAuth 授权换票与 Sub2API 账号池原子导入脚本
+(基于微软 Outlook / Hotmail Plus-Addressing 别名裂变体系)
 =============================================================================
 依赖库：
-  pip install camoufox curl_cffi httpx
+  pip install curl_cffi httpx
 """
 
 import sys
@@ -18,6 +19,7 @@ from pathlib import Path
 
 # 配置参数
 PROGROK_API = os.getenv("PROGROK_API", "http://127.0.0.1:3080")
+HOTMAIL_HELPER_URL = os.getenv("HOTMAIL_HELPER_URL", "http://127.0.0.1:17373")
 NOVAAPI_URL = os.getenv("NOVAAPI_URL", "http://127.0.0.1:8000")
 ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "admin@novaapi.local")
 ADMIN_PASS = os.getenv("ADMIN_PASS", "c8fdbc452d2e32c0e5b815e6")
@@ -35,15 +37,13 @@ def get_novaapi_token() -> str:
     with urllib.request.urlopen(req, timeout=10) as resp:
         return json.loads(resp.read().decode())["data"]["access_token"]
 
-def start_registration_batch(count: int, domain: str, imap_user: str, imap_pass: str) -> str:
+def start_registration_batch(count: int) -> str:
     payload = {
         "settings": {
             "registration_target": "grok",
             "registration_mode": "browser",
-            "mail_provider": "custom",
-            "mail_api_key": f"{imap_user}:{imap_pass}",
-            "mail_base_url": "imaps://imap.gmail.com:993",
-            "mail_domain": domain,
+            "mail_provider": "hotmail_local",
+            "hotmail_local_base_url": HOTMAIL_HELPER_URL,
             "captcha_provider": "local",
             "local_solver_url": "http://127.0.0.1:5072",
             "count": count,
@@ -65,7 +65,7 @@ def start_registration_batch(count: int, domain: str, imap_user: str, imap_pass:
     with urllib.request.urlopen(req, timeout=10) as resp:
         res = json.loads(resp.read().decode())
         batch_id = res.get("batch_id")
-        log(f"🚀 成功下发注册批次 [{batch_id}]，计划生产数量: {count}")
+        log(f"🚀 成功下发 Outlook 裂变注册批次 [{batch_id}]，计划生产数量: {count}")
         return batch_id
 
 def track_and_import(batch_id: str, accounts_dir: Path):
@@ -126,14 +126,11 @@ def track_and_import(batch_id: str, accounts_dir: Path):
         time.sleep(8)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Grok Auto Register & Sub2API Import Pipeline")
+    parser = argparse.ArgumentParser(description="Grok Auto Register & Sub2API Import Pipeline (Outlook Plus)")
     parser.add_argument("--count", type=int, default=1, help="Number of accounts to produce")
-    parser.add_argument("--domain", type=str, default="gachoncopilot.com", help="Catch-all domain")
-    parser.add_argument("--imap-user", type=str, default="congshaowei924@gmail.com", help="Gmail IMAP user")
-    parser.add_argument("--imap-pass", type=str, default="pjmsexnqbxswuydb", help="Gmail App Password")
     parser.add_argument("--accounts-dir", type=str, default=str(Path.home() / "services/progrok/runtime/data/accounts"))
     args = parser.parse_args()
 
-    batch_id = start_registration_batch(args.count, args.domain, args.imap_user, args.imap_pass)
+    batch_id = start_registration_batch(args.count)
     if batch_id:
         track_and_import(batch_id, Path(args.accounts_dir))

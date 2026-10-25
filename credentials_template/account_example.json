@@ -1,0 +1,21 @@
+{
+  "name": "your_account@gachoncopilot.com",
+  "platform": "grok",
+  "type": "oauth",
+  "credentials": {
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...",
+    "refresh_token": "yeS5-DE22gbIGQh27kDUscrUfjsiIMgiKRHzaLve...",
+    "token_type": "Bearer",
+    "client_id": "b1a00492-073a-47ea-816f-4c329264a828",
+    "scope": "openid profile email offline_access grok-cli:access api:access",
+    "email": "your_account@gachoncopilot.com",
+    "sub": "01923c78-9c96-4a4e-8ccb-1be5652328d4",
+    "expires_at": "2026-10-25T18:00:00Z",
+    "base_url": "https://cli-chat-proxy.grok.com/v1"
+  },
+  "concurrency": 3,
+  "priority": 50,
+  "rate_multiplier": 1.0,
+  "auto_pause_on_expired": true,
+  "group_ids": [2]
+}

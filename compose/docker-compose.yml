@@ -1,0 +1,83 @@
+version: "3.8"
+
+services:
+  # NovaApi / Sub2API 高并发反代中枢
+  novaapi:
+    image: weishaw/sub2api:latest # 官方公开稳定镜像
+    container_name: novaapi
+    restart: unless-stopped
+    ports:
+      - "8000:8080" # 对外映射 8000 端口提供标准 OpenAI /v1 接口
+    volumes:
+      - novaapi_data:/app/data
+    environment:
+      - AUTO_SETUP=true
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=8080
+      - SERVER_MODE=release
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_USER=sub2api
+      - DATABASE_PASSWORD=sub2api_strong_pass_2026
+      - DATABASE_DBNAME=sub2api
+      - DATABASE_SSLMODE=disable
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - ADMIN_EMAIL=admin@novaapi.local
+      - ADMIN_PASSWORD=c8fdbc452d2e32c0e5b815e6 # 管理员强密码
+      - TZ=Asia/Shanghai
+      - XAI_GROK_CLI_VERSION=1.0.13
+      - SECURITY_URL_ALLOWLIST_ENABLED=false
+      - SECURITY_URL_ALLOWLIST_ALLOW_INSECURE_HTTP=true
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - novaapi-network
+
+  # 数据库持久层 (PostgreSQL 18)
+  postgres:
+    image: postgres:18-alpine
+    container_name: novaapi-postgres
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - PGDATA=/var/lib/postgresql/data
+      - POSTGRES_USER=sub2api
+      - POSTGRES_PASSWORD=sub2api_strong_pass_2026
+      - POSTGRES_DB=sub2api
+      - TZ=Asia/Shanghai
+    networks:
+      - novaapi-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sub2api -d sub2api"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # 高速缓存层 (Redis 8)
+  redis:
+    image: redis:8-alpine
+    container_name: novaapi-redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    networks:
+      - novaapi-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  novaapi_data:
+  postgres_data:
+  redis_data:
+
+networks:
+  novaapi-network:
+    driver: bridge
